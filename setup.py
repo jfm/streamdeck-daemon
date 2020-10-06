@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="example-pkg-YOUR-USERNAME-HERE", # Replace with your own username
+    name="streamdeck-jfm",
     version="0.1.0",
     author="Jesper Fussing Mørk ",
     author_email="jfm@moerks.dk",

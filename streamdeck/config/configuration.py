@@ -10,7 +10,9 @@ class Configuration(object):
         return self.config['streamdeck']['pages']
 
     def get_page(self, pages, page_index):
-        return pages[page_index]
+        for page in pages:
+            if page['name'] == page_index:
+                return page
 
     def get_keys(self, page):
         return page['keys']

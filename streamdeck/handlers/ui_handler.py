@@ -8,18 +8,18 @@ class UIHandler(object):
         self.logger = logger
         self.toggle_map = {}
 
-    def initialize_keys(self, streamdeck):
+    def render_page(self, streamdeck, page_name):
         pages_config = self.config.get_pages()
-        page_config = self.config.get_page(pages_config, 0)
+        page_config = self.config.get_page(pages_config, page_name)
         for key_config in self.config.get_keys(page_config):
             index = key_config['index']
             text = key_config['text']
             icon = key_config['icon']
-            self.render_key_image(streamdeck, index, icon, text)
+            self.render_key_image(streamdeck, page_name, index, icon, text)
 
-    def render_key_image(self, streamdeck, key_number, icon_path, text):
+    def render_key_image(self, streamdeck, page_name, key_number, icon_path, text):
         pages_config = self.config.get_pages()
-        page_config = self.config.get_page(pages_config, 0)
+        page_config = self.config.get_page(pages_config, page_name)
         icon = Image.open(icon_path)
         image = PILHelper.create_scaled_image(streamdeck, icon, margins=[0, 0, 20, 0])
         draw = ImageDraw.Draw(image)

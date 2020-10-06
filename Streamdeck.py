@@ -3,6 +3,7 @@ import sys
 import time
 import threading
 from StreamDeck.DeviceManager import DeviceManager
+from streamdeck.handlers.view_handler import ViewHandler
 from streamdeck.handlers.key_handler import KeyHandler
 from streamdeck.handlers.ui_handler import UIHandler
 from streamdeck.config.configuration import Configuration
@@ -21,8 +22,9 @@ def run_streamdeck():
                 logger.error("No connected devices found")
 
             for index, streamdeck in enumerate(streamdecks):
-                key_handler = KeyHandler(configuration, logger, streamdeck)
+                initial_page = configuration.config['streamdeck']['initial_page']
                 ui_handler = UIHandler(configuration, logger)
+                view_handler = ViewHandler(configuration, logger, streamdeck, ui_handler)
 
                 streamdeck.open()
                 streamdeck.reset()
@@ -30,8 +32,8 @@ def run_streamdeck():
                 logger.info("StreamDeck {} - {}".format(index, streamdeck.deck_type()))
 
                 streamdeck.set_brightness(configuration.config['streamdeck']['brightness'])
-                ui_handler.initialize_keys(streamdeck)
-                streamdeck.set_key_callback(key_handler.handle_key)
+
+                view_handler.render_page(initial_page)
 
                 for t in threading.enumerate():
                     if t is threading.currentThread():
