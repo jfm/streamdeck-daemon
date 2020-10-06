@@ -1,4 +1,4 @@
-from streamdeck.handlers.key_handler import KeyHandler
+from streamdeck_daemon.handlers.key_handler import KeyHandler
 
 
 class ViewHandler(object):

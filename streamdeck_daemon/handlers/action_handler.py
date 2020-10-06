@@ -5,7 +5,7 @@ class ActionHandler(object):
     def __init__(self, logger, view_handler):
         self.logger = logger
         self.view_handler = view_handler
-        plugin_base = PluginBase(package='streamdeck.plugins')
+        plugin_base = PluginBase(package='streamdeck_daemon.plugins')
         self.plugin_source = plugin_base.make_plugin_source(searchpath=['./actions'])
 
     def handle_actions(self, actions):

@@ -1,5 +1,5 @@
-from streamdeck.handlers.action_handler import ActionHandler
-from streamdeck.handlers.ui_handler import UIHandler
+from streamdeck_daemon.handlers.action_handler import ActionHandler
+from streamdeck_daemon.handlers.ui_handler import UIHandler
 
 
 class KeyHandler(object):

@@ -1,13 +1,11 @@
-#!/home/jfm/.local/share/virtualenvs/streamdeck-daemon-2GNwbxCc/bin/python
 import sys
 import time
 import threading
 from StreamDeck.DeviceManager import DeviceManager
-from streamdeck.handlers.view_handler import ViewHandler
-from streamdeck.handlers.key_handler import KeyHandler
-from streamdeck.handlers.ui_handler import UIHandler
-from streamdeck.config.configuration import Configuration
-from streamdeck.logging.logger import Logger
+from streamdeck_daemon.handlers.view_handler import ViewHandler
+from streamdeck_daemon.handlers.ui_handler import UIHandler
+from streamdeck_daemon.config.configuration import Configuration
+from streamdeck_daemon.logging.logger import Logger
 
 
 def run_streamdeck():
@@ -50,7 +48,3 @@ def run_streamdeck():
 
         logger.debug("StreamDeck disconnected... Waiting for reconnection")
         time.sleep(3)
-
-
-if __name__ == "__main__":
-    run_streamdeck()
