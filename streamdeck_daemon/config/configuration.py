@@ -1,11 +1,18 @@
 import yaml
+from xdg import XDG_CONFIG_HOME
+from os import path
 
 
 class Configuration(object):
     def __init__(self):
-        with open("Streamdeck.yaml") as config_file:
-            self.config = yaml.load(config_file, Loader=yaml.FullLoader)
-
+        config_path = str(XDG_CONFIG_HOME) + "/streamdeck-daemon/streamdeck.yaml"
+        if path.exists(config_path):
+            with open(config_path) as config_file:
+                self.config = yaml.load(config_file, Loader=yaml.FullLoader)
+        else:
+            with open("streamdeck.yaml") as config_file:
+                self.config = yaml.load(config_file, Loader=yaml.FullLoader)
+ 
     def get_pages(self):
         return self.config['streamdeck']['pages']
 
@@ -23,7 +30,10 @@ class Configuration(object):
                 return key
 
     def get_actions(self, key):
-        return key['actions']
+        if key is not None:
+            return key['actions']
+        else:
+            return None
 
     def get_action(self, actions, action_index):
         return actions[action_index]

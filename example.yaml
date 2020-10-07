@@ -1,0 +1,56 @@
+---
+streamdeck:
+  brightness: 50
+  logger: logfile
+  loglevel: info
+  initial_page: primary
+  pages:
+    - name: primary
+      font: /usr/share/fonts/TTF/DejaVuSansMono.ttf
+      font-size: 14
+      keys:
+        - key:
+          index: 0
+          type: button
+          text: "Launch"
+          icon: <PATH TO ICON PNG FILE>
+          actions:
+            - action:
+              plugin: launch
+              application: <DESKTOP LAUNCHER>
+        - key:
+          index: 1
+          type: button
+          text: "Command"
+          icon: <PATH TO ICON PNG FILE>
+          actions:
+            - action:
+              plugin: command
+              command: <SHELL COMMAND>
+        - key:
+          index: 2
+          type: button
+          text: "Brightness"
+          icon: <PATH TO ICON PNG FILE>
+          actions:
+            - action:
+              plugin: brightness
+              brightness: <BRIGHTNESS PCT VALUE>
+        - key:
+          index: 3
+          type: button
+          text: "Shortcut"
+          icon: <PATH TO ICON PNG FILE>
+          actions:
+            - action:
+              plugin: shortcut
+              shortcut: <SHORTCUT COMBO>
+        - key:
+          index: 4
+          type: button
+          text: "Page"
+          icon: <PATH TO ICON PNG FILE>
+          actions:
+            - action:
+              plugin: page
+              page: <PAGE NAME TO GO TO>

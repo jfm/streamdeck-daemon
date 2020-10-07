@@ -29,5 +29,6 @@ class KeyHandler(object):
         key_config = self.config.get_key(keys_config, key)
         actions_config = self.config.get_actions(key_config)
         self.action_handler.handle_actions(actions_config)
-        if key_config['type'] == 'toggle':
-            self.ui_handler.toggle_key(self.view_handler.streamdeck, key)
+        if key_config is not None:
+            if key_config['type'] == 'toggle':
+                self.ui_handler.toggle_key(self.view_handler.streamdeck, key)

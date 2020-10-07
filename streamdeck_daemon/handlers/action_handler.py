@@ -9,8 +9,9 @@ class ActionHandler(object):
         self.plugin_source = plugin_base.make_plugin_source(searchpath=['./actions'])
 
     def handle_actions(self, actions):
-        for action in actions:
-            self.handle_action(action)
+        if actions is not None:
+            for action in actions:
+                self.handle_action(action)
 
     def handle_action(self, action):
         action_plugin = self.plugin_source.load_plugin(action['plugin'])
