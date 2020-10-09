@@ -6,7 +6,8 @@ class ActionHandler(object):
         self.logger = logger
         self.view_handler = view_handler
         plugin_base = PluginBase(package='streamdeck_daemon.plugins')
-        self.plugin_source = plugin_base.make_plugin_source(searchpath=['./actions'])
+        external_plugin_dir = view_handler.configuration.plugin_dir
+        self.plugin_source = plugin_base.make_plugin_source(searchpath=['./streamdeck_daemon/plugins', external_plugin_dir])
 
     def handle_actions(self, actions):
         if actions is not None:
