@@ -35,4 +35,4 @@ jobs:
           poetry run pytest
       - name: Build and publish
         run: |
-          poetry publish -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
+          poetry publish --build -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
