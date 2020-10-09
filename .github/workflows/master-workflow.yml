@@ -39,6 +39,6 @@ jobs:
       - name: Commit version changes
         run: |
           echo $(poetry version)
-          git tag $(poetry version)
-          #          git commit -a -m ${{ env.VERSION }}
-          #          git push
+          git tag "v$(poetry version | awk '{print $NF}')"
+          git commit -a -m "v$(poetry version | awk '{print $NF}')"
+          git push
