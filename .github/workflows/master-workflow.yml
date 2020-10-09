@@ -36,12 +36,9 @@ jobs:
         run: |
           poetry version patch
           #          poetry publish --build -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
-      - name: Set Version on Environment
-        run: echo "VERSION=$(poetry version)" >> GITHUB_ENV
       - name: Commit version changes
-        env:
-          VERSION: ${{ env.VERSION }}
         run: |
+          echo "VERSION=$(poetry version)" >> GITHUB_ENV
           echo $VERSION
           #          git tag ${{ env.VERSION }}
           #          git commit -a -m ${{ env.VERSION }}
