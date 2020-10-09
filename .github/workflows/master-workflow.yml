@@ -4,8 +4,6 @@ name: (master) Test, Build and Publish
 on:
   push:
     branches: master
-  pull_request:
-    branches: master
 
 jobs:
   build:
@@ -34,5 +32,8 @@ jobs:
         run: |
           poetry run pytest
       - name: Build and publish
+        with:
+          python-version: 3.8
         run: |
-          poetry publish -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
+          poetry version patch
+          poetry publish --build -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}

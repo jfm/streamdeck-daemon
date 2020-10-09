@@ -5,6 +5,7 @@ from os import path
 
 class Configuration(object):
     def __init__(self):
+        self.plugin_dir = str(XDG_CONFIG_HOME) + "/streamdeck-daemon/actions"
         config_path = str(XDG_CONFIG_HOME) + "/streamdeck-daemon/streamdeck.yaml"
         if path.exists(config_path):
             with open(config_path) as config_file:
