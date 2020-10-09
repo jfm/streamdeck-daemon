@@ -5,7 +5,7 @@ description = "A Simple daemon for controlling the Elgato Stremdeck devices"
 authors = ["Jesper Fussing Mørk <jfm@moerks.dk>"]
 
 [tool.poetry.dependencies]
-python = "^3.5"
+python = "^3.6"
 streamdeck = "^0.8.2"
 pyyaml = "^5.3.1"
 pillow = "^7.2.0"

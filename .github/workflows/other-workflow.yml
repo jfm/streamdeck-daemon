@@ -3,10 +3,8 @@ name: (other) Test and Build
 
 on:
   push:
-    branches: '**'
     branches-ignore: master
   pull_request:
-    branches: '**'
     branches-ignore: master
 
 jobs:
@@ -15,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8]
 
     steps:
       - uses: actions/checkout@v2
