@@ -35,7 +35,7 @@ jobs:
       - name: Build and publish
         run: |
           poetry version patch
-          poetry publish --build -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
+          #          poetry publish --build -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
       - name: Set Version on Environment
         run: echo "VERSION=$(poetry version)" >> GITHUB_ENV
       - name: Commit version changes
