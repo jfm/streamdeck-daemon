@@ -43,6 +43,7 @@ def run_streamdeck():
         except KeyboardInterrupt:
             logger.info("Closing StreamDeck daemon")
             streamdeck.reset()
+            streamdeck.set_brightness(5)
             streamdeck.close()
             sys.exit()
 

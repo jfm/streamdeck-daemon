@@ -12,7 +12,7 @@ class Configuration(object):
         else:
             with open("streamdeck.yaml") as config_file:
                 self.config = yaml.load(config_file, Loader=yaml.FullLoader)
- 
+
     def get_pages(self):
         return self.config['streamdeck']['pages']
 
