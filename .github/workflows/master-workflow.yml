@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.8]
 
     steps:
       - uses: actions/checkout@v2
@@ -32,8 +32,6 @@ jobs:
         run: |
           poetry run pytest
       - name: Build and publish
-        with:
-          python-version: 3.8
         run: |
           poetry version patch
           poetry publish --build -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
