@@ -24,18 +24,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install poetry
-          #          poetry install --no-root
+          poetry install --no-root
       - name: Lint with flake8
         run: |
-          #          poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          #          poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          #          poetry run pytest
+          poetry run pytest
       - name: Build and publish
         run: |
           poetry version patch
-          #          poetry publish --build -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
+          poetry publish --build -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
       - name: Commit version changes
         run: |
           echo $(poetry version)
