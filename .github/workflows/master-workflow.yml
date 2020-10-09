@@ -39,6 +39,8 @@ jobs:
       - name: Commit version changes
         run: |
           echo $(poetry version)
+          git config user.name "Github Actions Bot"
+          git config user.email "<>"
           git tag "v$(poetry version | awk '{print $NF}')"
           git commit -a -m "v$(poetry version | awk '{print $NF}')"
           git push
