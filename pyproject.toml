@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "streamdeck-daemon"
-version = "0.2.3"
+version = "0.2.4"
 description = "A Simple daemon for controlling the Elgato Stremdeck devices"
 authors = ["Jesper Fussing Mørk <jfm@moerks.dk>"]
 
