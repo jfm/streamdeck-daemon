@@ -4,6 +4,7 @@ name: (master) Test, Build and Publish
 on:
   push:
     branches: master
+    paths-ignore: pyproject.toml
 
 jobs:
   build:
@@ -35,9 +36,10 @@ jobs:
         run: |
           poetry version patch
           poetry publish --build -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
+      - name: Set Version on Environment
+        run: echo "VERSION=$(poetry version)" >> GITHUB_ENV
       - name: Commit version changes
         run: |
-          set-env name=VERSION::$(echo -n "poetry version")
           git tag $VERSION
           git commit -a -m $VERSION
           git push
