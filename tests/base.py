@@ -1,3 +1,5 @@
+from StreamDeck.Devices.StreamDeckOriginalV2 import StreamDeckOriginalV2
+from StreamDeck.Transport.Transport import Transport
 from streamdeck_daemon.config.configuration import Configuration
 from streamdeck_daemon.logging.logger import Logger
 
@@ -28,6 +30,15 @@ class BaseTest():
         mocker.patch.object(Logger, 'debug')
         self.mock_configuration = Configuration()
         self.mock_logger = Logger(self.mock_configuration)
+
+    def build_mock_streamdeck(self, mocker, **kwargs):
+        Transport.Device.__abstractmethods__ = set()
+        mocker.patch.object(Transport.Device, 'close')
+        mocker.patch.object(StreamDeckOriginalV2, 'reset')
+        mocker.patch.object(StreamDeckOriginalV2, 'set_key_callback')
+        mocker.patch.object(StreamDeckOriginalV2, 'set_brightness')
+        mocker.patch.object(StreamDeckOriginalV2, 'close')
+        self.mock_streamdeck = StreamDeckOriginalV2(Transport.Device())
 
     def get_action_config(self, plugin, plugin_key, plugin_value):
         return {'plugin': plugin, plugin_key: plugin_value}
