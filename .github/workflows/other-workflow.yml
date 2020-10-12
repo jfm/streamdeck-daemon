@@ -27,7 +27,7 @@ jobs:
           poetry config virtualenvs.in-project false
           poetry config cache-dir ~/.poetry
           poetry config virtualenvs.path ~/.poetry/venv
-          poetry install --no-root
+          poetry install
       - name: Lint with flake8
         run: |
           poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
