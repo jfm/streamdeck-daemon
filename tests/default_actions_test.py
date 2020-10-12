@@ -1,5 +1,4 @@
 from streamdeck_daemon.plugins.brightness import handle_action as brightness_action
-from streamdeck_daemon.plugins.shortcut import handle_action as shortcut_action
 from streamdeck_daemon.plugins.command import handle_action as command_action
 from streamdeck_daemon.plugins.launch import handle_action as launch_action
 from streamdeck_daemon.plugins.page import handle_action as page_action
