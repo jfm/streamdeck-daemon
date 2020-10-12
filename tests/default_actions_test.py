@@ -5,7 +5,6 @@ from streamdeck_daemon.plugins.launch import handle_action as launch_action
 from streamdeck_daemon.plugins.page import handle_action as page_action
 from streamdeck_daemon.handlers.view_handler import ViewHandler
 from tests.base import BaseTest
-import pyautogui
 import os
 
 
@@ -22,17 +21,6 @@ class TestDefaultActions(BaseTest):
         brightness_action(self.mock_logger, mock_view_handler, action_config)
 
         mock_view_handler.set_brightness.assert_called_once_with('1')
-
-    def test_shortcut_action(self, mocker):
-        self.default_setup(mocker)
-
-        mocker.patch('pyautogui.hotkey')
-
-        action_config = self.get_action_config('shortcut', 'shortcut', 'shift+t')
-
-        shortcut_action(self.mock_logger, None, action_config)
-
-        assert pyautogui.hotkey.called_once_with('shift+t')
 
     def test_command_action(self, mocker):
         self.default_setup(mocker)
