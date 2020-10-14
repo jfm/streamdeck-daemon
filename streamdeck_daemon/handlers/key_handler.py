@@ -31,4 +31,4 @@ class KeyHandler(object):
         self.action_handler.handle_actions(actions_config)
         if key_config is not None:
             if key_config['type'] == 'toggle':
-                self.ui_handler.toggle_key(self.view_handler.streamdeck, key)
+                self.ui_handler.toggle_key(self.view_handler.streamdeck, self.page_name, key)
