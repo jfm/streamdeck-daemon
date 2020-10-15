@@ -23,7 +23,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install poetry
-          poetry install --no-root
+          poetry config virtualenvs.create true
+          poetry config virtualenvs.in-project false
+          poetry config cache-dir ~/.poetry
+          poetry config virtualenvs.path ~/.poetry/venv
+          poetry install
       - name: Lint with flake8
         run: |
           poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -31,6 +35,3 @@ jobs:
       - name: Test with pytest
         run: |
           poetry run pytest
-      - name: Build and publish
-        run: |
-          poetry build

@@ -31,9 +31,9 @@ class UIHandler(object):
         with streamdeck:
             streamdeck.set_key_image(key_number, rendered_image)
 
-    def toggle_key(self, streamdeck, index):
+    def toggle_key(self, streamdeck, page_name, index):
         pages = self.config.get_pages()
-        page = self.config.get_page(pages, 0)
+        page = self.config.get_page(pages, page_name)
         keys = self.config.get_keys(page)
         key = self.config.get_key(keys, index)
 
@@ -42,7 +42,7 @@ class UIHandler(object):
 
         if self.toggle_map[index] is False:
             self.toggle_map[index] = True
-            self.render_key_image(streamdeck, index, key['toggled_icon'], key['toggled_text'])
+            self.render_key_image(streamdeck, page_name, index, key['toggled_icon'], key['toggled_text'])
         else:
             self.toggle_map[index] = False
-            self.render_key_image(streamdeck, index, key['icon'], key['text'])
+            self.render_key_image(streamdeck, page_name, index, key['icon'], key['text'])
