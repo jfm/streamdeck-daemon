@@ -12,6 +12,8 @@ pillow = "^7.2.0"
 pyautogui = "^0.9.51"
 pluginbase = "^1.0.0"
 xdg = "^4.0.1"
+phue = "^1.1"
+simpleobsws = "^0.0.7"
 
 [tool.poetry.dev-dependencies]
 neovim = "^0.3.1"

@@ -7,6 +7,7 @@ class UIHandler(object):
         self.config = config
         self.logger = logger
         self.toggle_map = {}
+        self.font = ImageFont.truetype('/usr/share/fonts/TTF/DejaVuSansMono.ttf', 14)
 
     def render_page(self, streamdeck, page_name):
         pages_config = self.config.get_pages()
@@ -18,22 +19,19 @@ class UIHandler(object):
             self.render_key_image(streamdeck, page_name, index, icon, text)
 
     def render_key_image(self, streamdeck, page_name, key_number, icon_path, text):
-        pages_config = self.config.get_pages()
-        page_config = self.config.get_page(pages_config, page_name)
         icon = Image.open(icon_path)
         image = PILHelper.create_scaled_image(streamdeck, icon, margins=[0, 0, 20, 0])
         draw = ImageDraw.Draw(image)
-        font = ImageFont.truetype(page_config['font'], page_config['font-size'])
-        label_w, label_h = draw.textsize(text, font=font)
+        label_w, label_h = draw.textsize(text, font=self.font)
         label_pos = ((image.width - label_w) // 2, image.height - 20)
-        draw.text(label_pos, text=text, font=font, fill="white")
+        draw.text(label_pos, text=text, font=self.font, fill="white")
         rendered_image = PILHelper.to_native_format(streamdeck, image)
         with streamdeck:
             streamdeck.set_key_image(key_number, rendered_image)
 
-    def toggle_key(self, streamdeck, index):
+    def toggle_key(self, streamdeck, page_name, index):
         pages = self.config.get_pages()
-        page = self.config.get_page(pages, 0)
+        page = self.config.get_page(pages, page_name)
         keys = self.config.get_keys(page)
         key = self.config.get_key(keys, index)
 
@@ -42,7 +40,7 @@ class UIHandler(object):
 
         if self.toggle_map[index] is False:
             self.toggle_map[index] = True
-            self.render_key_image(streamdeck, index, key['toggled_icon'], key['toggled_text'])
+            self.render_key_image(streamdeck, page_name, index, key['toggled_icon'], key['toggled_text'])
         else:
             self.toggle_map[index] = False
-            self.render_key_image(streamdeck, index, key['icon'], key['text'])
+            self.render_key_image(streamdeck, page_name, index, key['icon'], key['text'])
